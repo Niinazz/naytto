@@ -12,9 +12,9 @@ require_once '../src/init.php';
 
   $request = strtok($request, '?');
 
-// Luodaan uusi Plates-olio ja kytketään se sovelluksen sivupohjiin.
+  // Luodaan uusi Plates-olio ja kytketään se sovelluksen sivupohjiin.
+  $templates = new League\Plates\Engine(TEMPLATE_DIR);
 
-  $templates = new League\Plates\Engine('../src/view'); 
 
 
   

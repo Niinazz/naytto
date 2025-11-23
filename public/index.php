@@ -12,26 +12,24 @@ require_once '../src/init.php';
 
   $request = strtok($request, '?');
 
+// Luodaan uusi Plates-olio ja kytketään se sovelluksen sivupohjiin.
+
+  $templates = new League\Plates\Engine('../src/view'); 
 
 
-  // Selvitetään mitä sivua on kutsuttu ja suoritetaan sivua vastaava 
+  
+
+
+  // Selvitetään mitä sivua on kutsuttu ja suoritetaan sivua vastaava
 
   // käsittelijä.
 
   if ($request === '/' || $request === '/pajat') {
-
-    echo '<h1>Kaikki pajat</h1>';
-
+    echo $templates->render('pajat');
   } else if ($request === '/paja') {
-
-    echo '<h1>Yksittäisen pajan tiedot</h1>';
-
+    echo $templates->render('paja');
   } else {
-
-    echo '<h1>Pyydettyä sivua ei löytynyt :(</h1>';
-
+    echo $templates->render('notfound');
   }
-
-
 
 ?> 

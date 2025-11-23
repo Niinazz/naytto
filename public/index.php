@@ -25,7 +25,10 @@ require_once '../src/init.php';
   // käsittelijä.
 
   if ($request === '/' || $request === '/pajat') {
-    echo $templates->render('pajat');
+    require_once MODEL_DIR . 'paja.php';
+    $pajat = haePajat();
+    echo $templates->render('pajat',['pajat' => $pajat]);
+ // ... loput ehtolauseesta säilyy sellaisenaan
   } else if ($request === '/paja') {
     echo $templates->render('paja');
   } else {

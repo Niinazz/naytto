@@ -12,10 +12,6 @@
     <input id="email" type="email" name="email">
   </div>
   <div>
-    <label for="discord">Discord-tunnus:</label>
-    <input id="discord" type="text" name="discord">
-  </div>
-  <div>
     <label for="salasana1">Salasana:</label>
     <input id="salasana1" type="password" name="salasana1">
   </div>

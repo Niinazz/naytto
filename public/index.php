@@ -28,9 +28,16 @@ require_once '../src/init.php';
     require_once MODEL_DIR . 'paja.php';
     $pajat = haePajat();
     echo $templates->render('pajat',['pajat' => $pajat]);
- // ... loput ehtolauseesta säilyy sellaisenaan
+     // ... ehtolauseen alku säilyy sellaisenaan
   } else if ($request === '/paja') {
-    echo $templates->render('paja');
+    require_once MODEL_DIR . 'paja.php';
+    $paja = haePaja($_GET['id']);
+    if ($paja) {
+      echo $templates->render('paja',['paja' => $paja]);
+    } else {
+      echo $templates->render('pajanotfound');
+    }
+  // ... loput ehtolauseesta säilyy sellaisenaan
   } else {
     echo $templates->render('notfound');
   }

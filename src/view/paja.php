@@ -9,3 +9,17 @@
 <div><?=$paja['kuvaus']?></div>
 <div>Alkaa: <?=$start->format('j.n.Y G:i')?></div>
 <div>Loppuu: <?=$end->format('j.n.Y G:i')?></div>
+
+<?php
+   if ($loggeduser) {
+    if (!$osallistuminen) {
+      echo "<div class='flexarea'><a href='osallistu?id=$paja[idpaja]' class='button'>OSALLISTU PAJAAN</a></div>";    
+    } else {
+      echo "<div class='flexarea'>";
+      echo "<div>Olet osallistumassa pajaan!</div>";
+      echo "<a href='peru?id=$paja[idpaja]' class='button'>PERU PAJAAN OSALLISTUMINEN</a>";
+      echo "</div>";
+    }
+  }
+
+?>

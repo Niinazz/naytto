@@ -39,9 +39,19 @@ require_once '../src/init.php';
         echo $templates->render('pajanotfound');
       }
       break;
+         // ... switch-lauseen alku säilyy sellaisenaan
     case '/lisaa_tili':
-      echo $templates->render('lisaa_tili');
-      break;
+      if (isset($_POST['laheta'])) {
+        require_once MODEL_DIR . 'osallistuja.php';
+        $salasana = password_hash($_POST['salasana1'], PASSWORD_DEFAULT);
+        $id = lisaaOsallistuja($_POST['nimi'],$_POST['email'],$salasana);
+        echo "Tili on luotu tunnisteella $id";
+        break;
+      } else {
+        echo $templates->render('lisaa_tili');
+        break;
+      }    
+    // ... switch-lauseen loppu säilyy sellaisenaan
     default:
       echo $templates->render('notfound');
   }    

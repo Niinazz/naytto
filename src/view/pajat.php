@@ -15,7 +15,9 @@ foreach ($pajat as $paja) {
   echo "<div>";
     echo "<div>$paja[nimi]</div>";
     echo "<div>" . $start->format('j.n.Y') . "-" . $end->format('j.n.Y') . "</div>";
+    echo "<div><a href='paja?id=" . $paja['idpaja'] . "'>Lisätietoa</a></div>";
   echo "</div>";
+
 
 }
 

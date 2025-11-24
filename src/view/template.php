@@ -5,9 +5,10 @@
     <meta charset="UTF-8">    
   </head>
   <body>
-    <header>
-      <h1>Joulupajat</h1>
+       <header>
+      <h1><a href="<?=BASEURL?>">Tonttulan Joulupajat</a></h1>
     </header>
+
     <section>
       <?=$this->section('content')?>
     </section>

@@ -58,6 +58,31 @@ require_once '../src/init.php';
         echo $templates->render('pajanotfound');
       }
       break;
+          case '/osallistu':
+      if ($_GET['id']) {
+        require_once MODEL_DIR . 'osallistuminen.php';
+        $idpaja = $_GET['id'];
+        if ($loggeduser) {
+          lisaaOsallistuminen($loggeduser['idosallistuja'],$idpaja);
+        }
+        header("Location: paja?id=$idpaja");
+      } else {
+        header("Location: pajat");
+      }
+      break;
+          case '/peru':
+      if ($_GET['id']) {
+        require_once MODEL_DIR . 'osallistuminen.php';
+        $idpaja = $_GET['id'];
+        if ($loggeduser) {
+          poistaOsallistuminen($loggeduser['idosallistuja'],$idpaja);
+        }
+        header("Location: paja?id=$idpaja");
+      } else {
+        header("Location: pajat");  
+      }
+      break;
+
    case '/lisaa_tili':
       if (isset($_POST['laheta'])) {
         $formdata = cleanArrayData($_POST);

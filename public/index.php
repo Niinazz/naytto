@@ -41,11 +41,19 @@ require_once '../src/init.php';
       $pajat = haePajat();
       echo $templates->render('pajat',['pajat' => $pajat]);
       break;
-    case '/paja':
+       case '/paja':
       require_once MODEL_DIR . 'paja.php';
+      require_once MODEL_DIR . 'osallistuminen.php';
       $paja = haePaja($_GET['id']);
       if ($paja) {
-        echo $templates->render('paja',['paja' => $paja]);
+        if ($loggeduser) {
+          $osallistuminen = haeOsallistuminen($loggeduser['idosallistuja'],$paja['idpaja']);
+        } else {
+          $osallistuminen = NULL;
+        }
+        echo $templates->render('paja',['paja' => $paja,
+                                             'osallistuminen' => $osallistuminen,
+                                             'loggeduser' => $loggeduser]);
       } else {
         echo $templates->render('pajanotfound');
       }

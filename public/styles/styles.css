@@ -24,10 +24,15 @@ body {
 }
 
 header {
-  background-color: #c9342a;
-  padding: 2rem 2rem;
-
+  background-color: #cc281c;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.5rem;
 }
+
 
 header h1 {
   font-size: 3rem;

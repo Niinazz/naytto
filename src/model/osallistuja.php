@@ -7,4 +7,9 @@
     return DB::lastInsertId();
   }
 
+  function haeOsallistujaSahkopostilla($email) {
+    return DB::run('SELECT * FROM osallistuja WHERE email = ?;', [$email])->fetchAll();
+  }
+
+
 ?>

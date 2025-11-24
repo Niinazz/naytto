@@ -27,7 +27,7 @@ require_once '../src/init.php';
     case '/':
     case '/pajat':
       require_once MODEL_DIR . 'paja.php';
-      $tapahtumat = haePajat();
+      $pajat = haePajat();
       echo $templates->render('pajat',['pajat' => $pajat]);
       break;
     case '/paja':
@@ -45,7 +45,7 @@ require_once '../src/init.php';
         require_once CONTROLLER_DIR . 'tili.php';
         $tulos = lisaaTili($formdata);
         if ($tulos['status'] == "200") {
-          echo "Tili on luotu tunnisteella $tulos[id]";
+          echo $templates->render('tili_luotu', ['formdata' => $formdata]);
           break;
         }
         echo $templates->render('lisaa_tili', ['formdata' => $formdata, 'error' => $tulos['error']]);

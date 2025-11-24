@@ -1,4 +1,6 @@
 <?php
+var_dump($_SERVER['REQUEST_URI']);
+
 
 // Suoritetaan projektin alustusskripti.
 require_once '../src/init.php';
@@ -37,7 +39,11 @@ require_once '../src/init.php';
     } else {
       echo $templates->render('pajanotfound');
     }
+      // ... ehtolauseen alku säilyy sellaisenaan
+  } else if ($request === '/lisaa_tili') {
+    echo $templates->render('lisaa_tili');
   // ... loput ehtolauseesta säilyy sellaisenaan
+
   } else {
     echo $templates->render('notfound');
   }

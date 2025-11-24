@@ -6,6 +6,15 @@
 // Suoritetaan projektin alustusskripti.
 require_once '../src/init.php';
 
+  // Haetaan kirjautuneen käyttäjän tiedot.
+  if (isset($_SESSION['user'])) {
+    require_once MODEL_DIR . 'osallistuja.php';
+    $loggeduser = haeOsallistuja($_SESSION['user']);
+  } else {
+    $loggeduser = NULL;
+  }
+
+
 
   // Siistitään polku urlin alusta ja mahdolliset parametrit urlin lopusta.
   // Siistimisen jälkeen osoite /~koodaaja/naytto/paja?id=1 on 
@@ -64,7 +73,6 @@ require_once '../src/init.php';
           $_SESSION['user'] = $_POST['email'];
           header("Location: " . $config['urls']['baseUrl']);
         } else {
-    ... loppuosa koodista on muuttumatonta
           echo $templates->render('kirjaudu', [ 'error' => ['virhe' => 'Väärä käyttäjätunnus tai salasana!']]);
         }
       } else {

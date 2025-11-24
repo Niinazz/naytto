@@ -4,8 +4,7 @@
 
     // Haetaan käyttäjän tiedot sen sähköpostiosoitteella. 
     require_once(MODEL_DIR . 'henkilo.php');
-    $tiedot = haeOsallistujaSahkopostilla($email);
-    $tiedot = array_shift($tiedot);
+    $tiedot = haeOsallistuja($email);
 
     // Tarkistetaan ensin löytyikö käyttäjä. Jos löytyi, niin
     // tarkistetaan täsmäävätkö salasanat.

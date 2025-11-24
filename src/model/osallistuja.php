@@ -11,5 +11,9 @@
     return DB::run('SELECT * FROM osallistuja WHERE email = ?;', [$email])->fetchAll();
   }
 
+    function haeOsallistuja($email) {
+    return DB::run('SELECT * FROM osallistuja WHERE email = ?;', [$email])->fetch();
+  }
+
 
 ?>

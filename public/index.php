@@ -1,4 +1,8 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+//virheet selaimessa näkyviin!
+
 
   // Aloitetaan istunnot.
   session_start();
@@ -21,6 +25,7 @@ require_once '../src/init.php';
   // lyhentynyt muotoon /tapahtuma.
  $request = str_replace($config['urls']['baseUrl'],'',$_SERVER['REQUEST_URI']);
   $request = strtok($request, '?');
+
 
   // Luodaan uusi Plates-olio ja kytketään se sovelluksen sivupohjiin.
   $templates = new League\Plates\Engine(TEMPLATE_DIR);
@@ -138,6 +143,20 @@ require_once '../src/init.php';
       logout();
       header("Location: " . $config['urls']['baseUrl']);
       break;
+
+          case "/tilaa_vaihtoavain":
+      $formdata = cleanArrayData($_POST);
+      // Tarkistetaan, onko lomakkeelta lähetetty tietoa.
+      if (isset($formdata['laheta'])) {    
+  
+        // TODO vaihtoavaimen tilauskäsittely
+  
+      } else {
+        // Lomakeelta ei ole lähetetty tietoa, tulostetaan lomake.
+        echo $templates->render('tilaa_vaihtoavain_lomake');
+      }
+      break;
+
       default:
       echo $templates->render('notfound');
   }

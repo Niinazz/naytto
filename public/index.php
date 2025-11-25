@@ -98,6 +98,20 @@ require_once '../src/init.php';
         echo $templates->render('lisaa_tili', ['formdata' => [], 'error' => []]);
         break;
       }
+          case "/vahvista":
+      if (isset($_GET['key'])) {
+        $key = $_GET['key'];
+        require_once MODEL_DIR . 'osallistuja.php';
+        if (vahvistaTili($key)) {
+          echo $templates->render('tili_aktivoitu');
+        } else {
+          echo $templates->render('tili_aktivointi_virhe');
+        }
+      } else {
+        header("Location: " . $config['urls']['baseUrl']);
+      }
+      break;
+
                case "/kirjaudu":
       if (isset($_POST['laheta'])) {
         require_once CONTROLLER_DIR . 'kirjaudu.php';

@@ -1,5 +1,3 @@
-
-
 <?php $this->layout('template', ['title' => 'Unohtunut salasana']) ?>
 
 <h1>Unohtunut salasana</h1>

@@ -8,7 +8,14 @@ ini_set('display_errors', 1);
   session_start();
 
 // Suoritetaan projektin alustusskripti.
+
 require_once '../src/init.php';
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+
+
 
   // Haetaan kirjautuneen käyttäjän tiedot.
   if (isset($_SESSION['user'])) {
@@ -144,18 +151,51 @@ require_once '../src/init.php';
       header("Location: " . $config['urls']['baseUrl']);
       break;
 
-          case "/tilaa_vaihtoavain":
-      $formdata = cleanArrayData($_POST);
-      // Tarkistetaan, onko lomakkeelta lähetetty tietoa.
-      if (isset($formdata['laheta'])) {    
-  
-        // TODO vaihtoavaimen tilauskäsittely
-  
-      } else {
-        // Lomakeelta ei ole lähetetty tietoa, tulostetaan lomake.
+       case "/tilaa_vaihtoavain":
+    // Puhdistetaan lomaketiedot
+    $formdata = cleanArrayData($_POST);
+   
+
+    // Tarkistetaan, onko lomake lähetetty
+    if (isset($formdata['laheta'])) {
+
+      
+
+        // Haetaan käyttäjä sähköpostilla
+        require_once MODEL_DIR . 'osallistuja.php';
+        $user = haeOsallistuja($formdata['email'] ?? '');
+       
+
+        
+
+        if ($user) {
+            // 1. Luodaan satunnainen reset-avain
+            require_once HELPERS_DIR . 'secret.php'; // generateResetCode()
+            $avain = generateResetCode($user['email']);
+
+            // 2. Tallennetaan avain tietokantaan ja asetetaan voimassaoloaika
+            asetaVaihtoavain($user['email'], $avain);
+
+            // 3. Luodaan sähköpostilinkki salasanan vaihtoon
+            $linkki = BASEURL . "/vaihda_salasana?key=" . $avain;
+            $viesti = "Klikkaa tästä linkistä vaihtaaksesi salasanasi: $linkki";
+
+            // 4. Lähetetään sähköposti
+            // Kommentoi mail() testivaiheessa ja käytä echo nähdäksesi linkin
+             mail($user['email'], "Salasanan vaihtolinkki", $viesti);
+            
+            
+        }
+
+        // 5. Näytetään aina sama vahvistusnäkymä
+        echo $templates->render('tilaa_vaihtoavain_lahetetty');
+
+    } else {
+        // Lomaketta ei lähetetty → näytetään lomake
         echo $templates->render('tilaa_vaihtoavain_lomake');
-      }
-      break;
+    }
+    break;
+
 
       default:
       echo $templates->render('notfound');

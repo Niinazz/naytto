@@ -242,7 +242,16 @@ ini_set('display_errors', 1);
         break;
       }
 
-      break;
+      case '/omat_pajat':
+    if ($loggeduser) {
+        require_once MODEL_DIR . 'osallistuminen.php';
+        $pajat = haeKayttajanPajat($loggeduser['idosallistuja']);
+        echo $templates->render('omat_pajat', ['pajat' => $pajat]);
+    } else {
+        header("Location: kirjaudu"); // ohjaa kirjautumiseen
+    }
+    break;
+
 
 
 

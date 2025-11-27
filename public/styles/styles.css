@@ -32,12 +32,13 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end; /* Siirtää profiilin headerin alareunaan */
   font-size: 1.5rem;
   border-bottom: 3px solid #ff4545;
-box-shadow: 0 10px 40px rgba(240, 14, 14, 0.8);
-padding-bottom: 10px;
+  box-shadow: 0 10px 40px rgba(240, 14, 14, 0.8);
+  padding-bottom: 10px;
 }
+
 
 
 header h1 {
@@ -159,5 +160,71 @@ input[type=submit], .button {
   width: 100%;
   height: 100%;
   z-index: 1000; /* voi olla headerin/footterin alla tai päällä tarpeen mukaan */
+}
+
+/* Profiiliosio pienemmäksi ja oikealle */
+header .profile {
+    display: flex;
+    flex-direction: column;  /* linkit päällekkäin */
+    align-items: flex-end;   /* oikealle */
+    font-size: 0.85rem;      /* pienempi fontti profiilille */
+    line-height: 1.2;
+}
+
+/* Lisää tilaa profiililinkkien väliin */
+.profile .user-link,
+.profile .logout {
+    margin-bottom: 0.4rem;  /* tilaa alareunaan, säädä tarpeen mukaan */
+}
+
+/* Sähköposti linkkinä omiin pajoihin */
+.profile .user-link a {
+    text-decoration: underline;
+    font-weight: bold;
+    color: #089136;
+    background-color: #cc281c;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.3rem;
+    transition: all 0.2s ease;
+}
+
+.profile .user-link a:hover {
+    color: #ffffff;
+    background-color: #35b660;
+    text-decoration: none;
+}
+
+/* Kirjaudu ulos -linkki */
+.profile .logout a {
+    text-decoration: underline;
+    font-weight: bold;
+    color: #089136;
+    background-color: #cc281c;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.3rem;
+    transition: all 0.2s ease;
+}
+
+.profile .logout a:hover {
+    color: #ffffff;
+    background-color: #ff4545;
+    text-decoration: none;
+}
+
+/* Kirjaudu -linkki, jos ei ole kirjautunut */
+.profile .login a {
+    text-decoration: underline;
+    font-weight: bold;
+    color: #089136;
+    background-color: #cc281c;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.3rem;
+    transition: all 0.2s ease;
+}
+
+.profile .login a:hover {
+    color: #ffffff;
+    background-color: #089136;
+    text-decoration: none;
 }
 

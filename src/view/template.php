@@ -9,15 +9,20 @@
     <header>
         <h1><a href="<?=BASEURL?>">Tonttulan joulupajat</a></h1>
         <div class="profile">
-            <?php
-              if (isset($_SESSION['user'])) {
-                echo "<div>$_SESSION[user]</div>";
-                echo "<div><a href='logout'>Kirjaudu ulos</a></div>";
-              } else {
-                echo "<div><a href='kirjaudu'>Kirjaudu</a></div>";
-              }
-            ?>
-        </div>
+    <?php
+      if (isset($_SESSION['user'])) {
+        // Sähköposti linkkinä omiin pajoihin
+        echo "<div class='user-link'><a href='omat_pajat'>{$_SESSION['user']}</a></div>";
+        // Lisätty luokka logout, jotta hover toimii
+        echo "<div class='logout'><a href='logout'>Kirjaudu ulos</a></div>";
+      } else {
+        echo "<div><a href='kirjaudu'>Kirjaudu</a></div>";
+      }
+    ?>
+</div>
+
+
+
     </header>
 
     <section>

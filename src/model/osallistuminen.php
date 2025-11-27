@@ -18,4 +18,15 @@
                    [$idosallistuja, $idpaja])->rowCount();
   }
 
+
+  function haeKayttajanPajat($idosallistuja) {
+    return DB::run("
+        SELECT p.idpaja, p.nimi, p.kuvaus, p.paj_alkaa, p.paj_loppuu
+        FROM osallistuminen o
+        JOIN paja p ON o.idpaja = p.idpaja
+        WHERE o.idosallistuja = ?
+        ORDER BY p.paj_alkaa
+    ", [$idosallistuja])->fetchAll();
+}
+
 ?>

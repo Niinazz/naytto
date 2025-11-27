@@ -1,6 +1,6 @@
 <?php $this->layout('template', ['title' => 'Tulevat joulupajat']) ?>
 
-<h1>Tämän vuoden Tonttulan joulupajat</h1>
+<h1>Vuoden 2025 Tonttulan joulupajat</h1>
 
 
 

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pirata+One&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
   padding: 0;
@@ -9,9 +9,12 @@
 
 html {
   font-family: 'Sour Gummy', sans-serif;
+   font-weight: extraLight 200;
+  font-style: normal;
   background-image :url('background2.jpg');
   background-position: center;
   background-size: cover;
+   
 
 }
 
@@ -31,18 +34,26 @@ header {
   justify-content: space-between;
   align-items: center;
   font-size: 1.5rem;
+  border-bottom: 3px solid #ff4545;
+box-shadow: 0 10px 40px rgba(240, 14, 14, 0.8);
+padding-bottom: 10px;
 }
 
 
 header h1 {
-  font-size: 3rem;
-  font-weight: normal;
+  font-size: 4.5rem;
   margin-left: 0.5rem;
+  font-family:'Pirata One', system-ui;
+  font-weight: 400;
+  font-style: normal;
+  
 }
 
 header a {
   color: #000;
   text-decoration: none;
+  
+  
 }
 
 section {
@@ -51,13 +62,23 @@ section {
 
 section h1 {
   margin-bottom: 3rem;
+  font-family:'Pirata One', system-ui;
+  font-weight: 400;
+  font-style: normal;
 }
 
 hr {
   border: none;
-  border-top: solid #ee2828 4px;
+  border-top: 6px solid #ff1303;
   margin: 3rem;
+  box-shadow:
+    0 0 25px rgba(255, 19, 3, 1),
+    0 0 50px rgba(255, 19, 3, 0.9),
+    0 0 100px rgba(255, 19, 3, 0.8),
+    0 0 150px rgba(255, 19, 3, 0.7);
 }
+
+
 
 footer {
   font-size: 0.8rem;
@@ -73,6 +94,7 @@ footer {
 
 .pajat > div > div:nth-child(3) {
   text-align: right;
+ 
 }
 
 form > div {
@@ -91,6 +113,7 @@ input {
 input[type=submit], .button {
   padding: 1rem 3rem;
   border-radius: 0.3rem;
+  border: 3px solid #3f3f3f;
   background-color: #35b660;
   color: #fff;
   font-weight: bold;
@@ -104,8 +127,8 @@ input[type=submit], .button {
 }
 
 .info {
-  background-color: #e5e5e5;
-  border: 1px solid #999;
+  background-color: #f3b3b3;
+  border: 2px solid #3f3f3f;
   border-radius: 0.5rem;
   padding: 1rem;
   margin: 1rem;
@@ -126,3 +149,15 @@ input[type=submit], .button {
 .button {
   text-decoration: none;
 }
+
+
+#snow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none; /* ei estä klikkauksia */
+  width: 100%;
+  height: 100%;
+  z-index: 1000; /* voi olla headerin/footterin alla tai päällä tarpeen mukaan */
+}
+

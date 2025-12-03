@@ -17,13 +17,15 @@ if (session_status() === PHP_SESSION_NONE) {
     <?php
         if (isset($_SESSION['user'])) {
 
-            // Käyttäjän sähköposti linkkinä omiin pajoihin
-            echo "<div class='user-link'><a href='omat_pajat'>{$_SESSION['user']}</a></div>";
-
             // Admin-linkki (jos admin on kirjautunut)
             if (isset($_SESSION['admin']) && $_SESSION['admin']) {
                 echo "<div class='admin-link'><a href='admin'>Ylläpitosivut</a></div>";
             }
+
+            // Käyttäjän sähköposti linkkinä omiin pajoihin
+            echo "<div class='user-link'><a href='omat_pajat'>{$_SESSION['user']}</a></div>";
+
+            
 
             // Uloskirjautumislinkki
             echo "<div class='logout'><a href='logout'>Kirjaudu ulos</a></div>";

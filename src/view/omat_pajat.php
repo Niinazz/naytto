@@ -3,7 +3,8 @@
 <h1>Olet ilmoittautunut näihin pajoihin: 🎅🏻</h1>
 
 <?php if (empty($pajat)): ?>
-    <p>Et ole ilmoittautunut vielä mihinkään pajaan!😖</p>
+    <p>Et ole ilmoittautunut vielä mihinkään pajaan!😖</p><br>
+    <p> Kipin kapin ilmoittautumaan!! ♡ </p>
 <?php else: ?>
     <div class="pajat">
     <?php foreach ($pajat as $paja): 

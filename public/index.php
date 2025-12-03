@@ -39,9 +39,6 @@ ini_set('display_errors', 1);
 
 
 
-  
-
-
   // Selvitetään mitä sivua on kutsuttu ja suoritetaan sivua vastaava
 
   // käsittelijä.
@@ -247,13 +244,24 @@ ini_set('display_errors', 1);
         header("Location: kirjaudu"); // ohjaa kirjautumiseen
     }
     break;
-        case (bool)preg_match('/\/admin.*/', $request):
-      if ($loggeduser["admin"]) {
-        echo "ylläpitosivut";
-      } else {
-        echo $templates->render('admin_ei_oikeuksia');
-      }
-      break;
+
+
+     // --- YLLÄPITO-OSIO ---
+case (bool)preg_match('/\/admin.*/', $request):
+    if ($loggeduser && $loggeduser["admin"]) {
+        require_once MODEL_DIR . 'osallistuja.php';
+        $users = haeKaikkiKayttajat();  // Käytetään valmista funktiota
+        echo $templates->render('admin_kayttajat', [
+            'users' => $users,
+            'config' => $config
+        ]);
+    } else {
+        echo $templates->render('admin_ei_oikeuksia', [
+            'config' => $config
+        ]);
+    }
+    break;
+
 
 
 

@@ -97,7 +97,8 @@ function lisaaTili($formdata, $baseurl='') {
       $avain = generateActivationCode($email);
 
 
-      $url = 'https://' . $_SERVER['HTTP_HOST'] . $baseurl . "/vahvista?key=$avain";
+      $url = 'https://' . $_SERVER['HTTP_HOST'] . BASEURL . "/vahvista?key=$avain";
+
 
       // Päivitetään aktivointiavain tietokantaan ja lähetetään
       // käyttäjälle sähköpostia. Jos tämä onnistui, niin palautetaan
@@ -208,7 +209,8 @@ function luoVaihtoavain($email, $baseurl='') {
   // vaihtolinkki.
   require_once(HELPERS_DIR . "secret.php");
   $avain = generateResetCode($email);
-  $url = 'https://' . $_SERVER['HTTP_HOST'] . $baseurl . "/reset?key=$avain";
+ $url = 'https://' . $_SERVER['HTTP_HOST'] . BASEURL . "/vaihda_salasana?key=$avain";
+
 
   // Tuodaan henkilo-mallin funktiot, joilla voidaan lisätä
   // vaihtoavaimen tiedot kantaan.

@@ -186,9 +186,11 @@ header .profile {
     align-items: flex-end;   /* oikealle */
     font-size: 0.85rem;      /* pienempi fontti profiilille */
     line-height: 1.2;
+    gap: 0.5rem;
 }
 
 /* Lisää tilaa profiililinkkien väliin */
+.profile .admin-link
 .profile .user-link,
 .profile .logout {
     margin-bottom: 0.4rem;  /* tilaa alareunaan, säädä tarpeen mukaan */
@@ -245,3 +247,19 @@ header .profile {
     text-decoration: none;
 }
 
+/* Admin-linkki */
+.profile .admin-link a {
+    text-decoration: underline;
+    font-weight: bold;
+    color: hsl(200, 80%, 20%); /* haluamasi väri */
+    background-color: #cc281c;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.3rem;
+    transition: all 0.2s ease;
+}
+
+.profile .admin-link a:hover {
+    color: #ffffff;
+    background-color: #69a4df;  /* hover-väri */
+    text-decoration: none;
+}

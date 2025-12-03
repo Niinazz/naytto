@@ -1,38 +1,45 @@
 <?php
 
-  require_once HELPERS_DIR . 'DB.php';
+require_once HELPERS_DIR . 'DB.php';
 
-  function lisaaOsallistuja($nimi,$email,$salasana) {
+function lisaaOsallistuja($nimi,$email,$salasana) {
     DB::run('INSERT INTO osallistuja (nimi, email,salasana) VALUE  (?,?,?);',[$nimi,$email,$salasana]);
     return DB::lastInsertId();
-  }
+}
 
-  function haeOsallistujaSahkopostilla($email) {
+function haeOsallistujaSahkopostilla($email) {
     return DB::run('SELECT * FROM osallistuja WHERE email = ?;', [$email])->fetchAll();
-  }
+}
 
-    function haeOsallistuja($email) {
+function haeOsallistuja($email) {
     return DB::run('SELECT * FROM osallistuja WHERE email = ?;', [$email])->fetch();
-  }
+}
 
-    function paivitaVahvavain($email,$avain) {
+function paivitaVahvavain($email,$avain) {
     return DB::run('UPDATE osallistuja SET vahvavain = ? WHERE email = ?', [$avain,$email])->rowCount();
-  }
+}
 
-  function vahvistaTili($avain) {
+function vahvistaTili($avain) {
     return DB::run('UPDATE osallistuja SET vahvistettu = TRUE WHERE vahvavain = ?', [$avain])->rowCount();
-  }
+}
 
-  function asetaVaihtoavain($email,$avain) {
+function asetaVaihtoavain($email,$avain) {
     return DB::run('UPDATE osallistuja SET nollausavain = ?, nollausaika = NOW() + INTERVAL 30 MINUTE WHERE email = ?', [$avain,$email])->rowCount();
-  }
+}
 
-  function tarkistaVaihtoavain($avain) {
+function tarkistaVaihtoavain($avain) {
     return DB::run('SELECT nollausavain, nollausaika-NOW() AS aikaikkuna FROM osallistuja WHERE nollausavain = ?', [$avain])->fetch();
-  }
+}
 
-  function vaihdaSalasanaAvaimella($salasana,$avain) {
+function vaihdaSalasanaAvaimella($salasana,$avain) {
     return DB::run('UPDATE osallistuja SET salasana = ?, nollausavain = NULL, nollausaika = NULL WHERE nollausavain = ?', [$salasana,$avain])->rowCount();
-  }
+}
+
+// TÄMÄ LISÄTÄÄN
+function haeKaikkiKayttajat() {
+    $stmt = DB::run("SELECT idosallistuja AS id, nimi, email, admin, vahvistettu FROM osallistuja ORDER BY idosallistuja ASC");
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
 ?>
+

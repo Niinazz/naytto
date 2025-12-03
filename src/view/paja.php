@@ -5,10 +5,16 @@
   $end = new DateTime($paja['paj_loppuu']);
 ?>
 
-<h1><?=$paja['nimi']?></h1>
-<div><?=$paja['kuvaus']?></div><br>
-<div>Alkaa: <?=$start->format('j.n.Y G:i')?></div>
-<div>Loppuu: <?=$end->format('j.n.Y G:i')?></div>
+<h1>♡<?=$paja['nimi']?>♡</h1>
+
+<?php if (!isset($_SESSION['user'])): ?>
+    <div class="info">Kirjaudu sisään osallistuaksesi tähän pajaan 🎅✨</div>
+<?php endif; ?>
+
+
+<div><?=$paja['kuvaus']?>✨</div><br>
+<div>Alkaa: <?=$start->format('j.n.Y G:i')?>🎄</div>
+<div>Loppuu: <?=$end->format('j.n.Y G:i')?>❄️</div>
 
 <?php
    if ($loggeduser) {
@@ -16,7 +22,7 @@
       echo "<div class='flexarea'><a href='osallistu?id=$paja[idpaja]' class='button'>OSALLISTU PAJAAN</a></div>";    
     } else {
       echo "<div class='flexarea'>";
-      echo "<div>Olet osallistumassa pajaan!</div>";
+      echo "<div>Olet osallistumassa tähän pajaan!</div>";
       echo "<a href='peru?id=$paja[idpaja]' class='button'>PERU PAJAAN OSALLISTUMINEN</a>";
       echo "</div>";
     }

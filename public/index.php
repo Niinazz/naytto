@@ -155,19 +155,14 @@ ini_set('display_errors', 1);
     // Puhdistetaan lomaketiedot
     $formdata = cleanArrayData($_POST);
    
-
     // Tarkistetaan, onko lomake lähetetty
     if (isset($formdata['laheta'])) {
 
       
-
         // Haetaan käyttäjä sähköpostilla
         require_once MODEL_DIR . 'osallistuja.php';
         $user = haeOsallistuja($formdata['email'] ?? '');
        
-
-        
-
         if ($user) {
             // 1. Luodaan satunnainen reset-avain
             require_once HELPERS_DIR . 'secret.php'; // generateResetCode()

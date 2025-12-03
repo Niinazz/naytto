@@ -9,9 +9,9 @@
 
 html {
   font-family: 'Sour Gummy', sans-serif;
-   font-weight: extraLight 200;
+   font-weight: 500;
   font-style: normal;
-  background-image :url('background2.jpg');
+  background-image :url('background7.jpg');
   background-position: center;
   background-size: cover;
    
@@ -42,7 +42,7 @@ header {
 
 
 header h1 {
-  font-size: 4.5rem;
+  font-size: 3.9rem;
   margin-left: 0.5rem;
   font-family:'Pirata One', system-ui;
   font-weight: 400;
@@ -53,6 +53,7 @@ header h1 {
 header a {
   color: #000;
   text-decoration: none;
+  
   
   
 }
@@ -82,7 +83,7 @@ hr {
 
 
 footer {
-  font-size: 0.8rem;
+  font-size: 0.8em;
   text-align: center;
   color: #1B1B3A;
 }
@@ -97,6 +98,22 @@ footer {
   text-align: right;
  
 }
+
+.pajat a {
+    text-decoration: underline;   /* näkyy normaalisti */
+    color: #ffffff;
+    background-color: #cc281c;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.3rem;
+    transition: all 0.2s ease;
+}
+
+.pajat a:hover {
+    color: #ffffff;
+    background-color: #35b660;   /* hover-väri */
+    text-decoration: none;
+}
+
 
 form > div {
   display: flex;
@@ -128,7 +145,7 @@ input[type=submit], .button {
 }
 
 .info {
-  background-color: #f3b3b3;
+  background-color: #f74e4e;
   border: 2px solid #3f3f3f;
   border-radius: 0.5rem;
   padding: 1rem;
@@ -137,7 +154,7 @@ input[type=submit], .button {
 }
 
 .info a {
-  color: #975579;
+  color: #418a17;
 }
 
 .flexarea {
@@ -181,7 +198,7 @@ header .profile {
 .profile .user-link a {
     text-decoration: underline;
     font-weight: bold;
-    color: #089136;
+    color: hsl(98, 95%, 16%);
     background-color: #cc281c;
     padding: 0.2rem 0.5rem;
     border-radius: 0.3rem;
@@ -198,7 +215,7 @@ header .profile {
 .profile .logout a {
     text-decoration: underline;
     font-weight: bold;
-    color: #089136;
+    color: #02571e;
     background-color: #cc281c;
     padding: 0.2rem 0.5rem;
     border-radius: 0.3rem;

@@ -7,19 +7,30 @@
 </head>
 <body>
     <header>
-        <h1><a href="<?=BASEURL?>">Tonttulan joulupajat</a></h1>
-        <div class="profile">
+        <h1><a href="<?=BASEURL?>">Tonttulan joulupajat💖</a></h1>
+       <div class="profile">
     <?php
-      if (isset($_SESSION['user'])) {
-        // Sähköposti linkkinä omiin pajoihin
-        echo "<div class='user-link'><a href='omat_pajat'>{$_SESSION['user']}</a></div>";
-        // Lisätty luokka logout, jotta hover toimii
-        echo "<div class='logout'><a href='logout'>Kirjaudu ulos</a></div>";
-      } else {
-        echo "<div><a href='kirjaudu'>Kirjaudu</a></div>";
-      }
+        if (isset($_SESSION['user'])) {
+
+            // Käyttäjän sähköposti linkkinä omiin pajoihin
+            echo "<div class='user-link'><a href='omat_pajat'>{$_SESSION['user']}</a></div>";
+
+            // Admin-linkki (jos admin on kirjautunut)
+            if (isset($_SESSION['admin']) && $_SESSION['admin']) {
+                echo "<div class='admin-link'><a href='admin'>Ylläpitosivut</a></div>";
+            }
+
+            // Uloskirjautumislinkki
+            echo "<div class='logout'><a href='logout'>Kirjaudu ulos</a></div>";
+
+        } else {
+
+            // Kirjautumislinkki
+            echo "<div><a href='kirjaudu'>Kirjaudu</a></div>";
+        }
     ?>
 </div>
+
 
 
 
@@ -31,7 +42,7 @@
 
     <footer>
       <hr>
-      <div>Pajat by Niina</div>
+      <div>Pajat by Niina🌟</div>
     </footer>
 
     <!-- 🎄 Lumisade alkaa tästä -->

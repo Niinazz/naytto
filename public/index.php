@@ -10,6 +10,7 @@ ini_set('display_errors', 1);
 // Suoritetaan projektin alustusskripti.
 
 require_once '../src/init.php';
+$baseurl = $config['urls']['baseUrl']; // <- lisää tämä
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -170,7 +171,7 @@ ini_set('display_errors', 1);
             asetaVaihtoavain($user['email'], $avain);
 
             // 3. Luodaan sähköpostilinkki salasanan vaihtoon
-            $linkki = BASEURL . "/vaihda_salasana?key=" . $avain;
+          $linkki = 'https://' . $_SERVER['HTTP_HOST'] . $baseurl . "/reset?key=" . $avain;
             $viesti = "Klikkaa tästä linkistä vaihtaaksesi salasanasi: $linkki";
 
             // 4. Lähetetään sähköposti
@@ -234,6 +235,29 @@ ini_set('display_errors', 1);
         echo $templates->render('reset_lomake', ['error' => '']);
         break;
       }
+
+      case '/vaihda_salasana':
+    $resetkey = $_GET['key'] ?? '';
+    require_once MODEL_DIR . 'osallistuja.php';
+    $rivi = tarkistaVaihtoavain($resetkey);
+    if (!$rivi || $rivi['aikaikkuna'] < 0) {
+        echo $templates->render('reset_virhe');
+        break;
+    }
+    $formdata = cleanArrayData($_POST);
+    if (isset($formdata['laheta'])) {
+        require_once CONTROLLER_DIR . 'tili.php';
+        $tulos = resetoiSalasana($formdata, $resetkey);
+        if ($tulos['status'] == "200") {
+            echo $templates->render('reset_valmis');
+            break;
+        }
+        echo $templates->render('reset_lomake', ['error' => $tulos['error']]);
+        break;
+    } else {
+        echo $templates->render('reset_lomake', ['error' => '']);
+        break;
+    }
 
       case '/omat_pajat':
     if ($loggeduser) {

@@ -203,14 +203,14 @@ function lahetaVaihtoavain($email,$url) {
   return mail($email,'Joulupaja-tilin salasanan vaihtaminen',$message);
 }
 
-function luoVaihtoavain($email, $baseurl='') {
+
+  function luoVaihtoavain($email, $baseurl='') {
 
   // Luodaan käyttäjälle vaihtoavain ja muodostetaan
   // vaihtolinkki.
   require_once(HELPERS_DIR . "secret.php");
   $avain = generateResetCode($email);
- $url = 'https://' . $_SERVER['HTTP_HOST'] . BASEURL . "/vaihda_salasana?key=$avain";
-
+  $url = 'https://' . $_SERVER['HTTP_HOST'] . $baseurl . "/reset?key=$avain";
 
   // Tuodaan henkilo-mallin funktiot, joilla voidaan lisätä
   // vaihtoavaimen tiedot kantaan.
